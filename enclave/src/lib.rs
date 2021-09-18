@@ -22,6 +22,7 @@ fn test_main_entrance() -> size_t {
         // ecies
         // utils.rs
         test_generate_keypair,
+        test_aead_enc_then_dec,
     )
 }
 

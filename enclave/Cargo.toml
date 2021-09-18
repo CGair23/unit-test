@@ -9,8 +9,11 @@ name = "unittestsampleenclave"
 crate-type = ["staticlib"]
 
 [dependencies]
-sgx_tunittest = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
-sgx_tstd = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
-sgx_types = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+sgx_tunittest       = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+sgx_tstd            = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+sgx_types           = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
 
-ecies  = { path = "../../ecies-rs-sgx" }
+rand                = { tag = "sgx_1.1.3", git = "https://github.com/mesalock-linux/rand-sgx.git"}
+ring                = { tag = "sgx_1.1.3", git = "https://github.com/mesalock-linux/ring-sgx.git"}
+
+ecies               = { path = "../../ecies-rs-sgx" }
