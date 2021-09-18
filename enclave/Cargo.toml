@@ -1,0 +1,12 @@
+[package]
+name = "enclave"
+version = "0.1.0"
+authors = ["CGair23 <chengeair23@sjtu.edu.cn>"]
+edition = "2018"
+
+[lib]
+name = "unittestsampleenclave"
+crate-type = ["staticlib"]
+
+[dependencies]
+sgx_tunittest = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
