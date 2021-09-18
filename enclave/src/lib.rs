@@ -20,6 +20,23 @@ pub extern "C"
 fn test_main_entrance() -> size_t {
     rsgx_unit_tests!(
         // ecies
+        // utils.rs
         test_generate_keypair,
     )
+}
+
+use ecies::utils::{
+    generate_keypair, encapsulate
+};
+
+#[no_mangle]
+pub extern "C" fn test_something() -> sgx_status_t {
+    let (sk1, pk1) = generate_keypair();
+    let (sk2, pk2) = generate_keypair();
+
+    println!("[+] test encapsulate()...");
+    let out = encapsulate(&sk1, &pk2).unwrap();
+    println!("{:?}", out);
+
+    sgx_status_t::SGX_SUCCESS
 }

@@ -7,6 +7,10 @@ extern {
     fn test_main_entrance(eid: sgx_enclave_id_t, retval: *mut size_t) -> sgx_status_t;
 }
 
+extern {
+    fn test_something(eid: sgx_enclave_id_t, retval: *mut sgx_status_t) -> sgx_status_t;
+}
+
 fn init_enclave() -> SgxResult<SgxEnclave> {
     let mut launch_token: sgx_launch_token_t = [0; 1024];
     let mut launch_token_updated: i32 = 0;
@@ -51,6 +55,22 @@ fn main() {
     assert_eq!(retval, 0);
 
     println!("[+] unit_test ended!");
+
+    let mut retval = sgx_status_t::SGX_SUCCESS;
+
+    let result = unsafe {
+        test_something(enclave.geteid(),
+                      &mut retval
+                    )
+    };
+    match result {
+        sgx_status_t::SGX_SUCCESS => {},
+        _ => {
+            println!("[-] ECALL Enclave Failed {}!", result.as_str());
+            return;
+        }
+    }
+    println!("[+] test_something success...");
 
     enclave.destroy();
 }
