@@ -70,7 +70,7 @@ fn main() {
             return;
         }
     }
-    println!("[+] test_something success...");
+    println!("[+] test_something success!");
 
     enclave.destroy();
 }
